@@ -1,0 +1,10 @@
+Name: Run validation workflow
+run-name: Validate, test and deploy
+on: workflow_dispatch
+jobs:
+  run-validation:
+    name: Run Validation job
+    runs-on: ubuntu-22.04
+    steps:
+      name: This if the first step
+      run: Echo "Validating"
