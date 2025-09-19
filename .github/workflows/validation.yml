@@ -1,4 +1,4 @@
-Name: Run validation workflow
+name: Run validation workflow
 run-name: Validate, test and deploy
 on: workflow_dispatch
 jobs:
