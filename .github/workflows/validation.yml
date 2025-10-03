@@ -6,5 +6,9 @@ jobs:
     name: Run Validation job
     runs-on: ubuntu-22.04
     steps:
-      -  name: This is the first step
-         run: echo "Validating"
+      -  name: List repo
+         run: ls -al
+      -  name: Download files from repository
+         uses: actions/checkout@v4
+      -  name: List repo with downloaded files
+         run: ls -al
