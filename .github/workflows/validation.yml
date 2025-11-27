@@ -9,4 +9,4 @@ jobs:
       -  name: Download files from repository
          uses: actions/checkout@v4
       -  name: Authenticate on DevHub
-         run: echo "sf org list"
+         run: sf org list
