@@ -9,6 +9,6 @@ jobs:
       -  name: Download files from repository
          uses: actions/checkout@v4
       -  name: Install SF CLI
-         run: npm install sf
+         run: npm install @salesforce/cli@~2.112.0
       -  name: Authenticate on DevHub
          run: sf org list
