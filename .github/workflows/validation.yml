@@ -8,7 +8,7 @@ jobs:
     steps:
       -  name: Download files from repository
          uses: actions/checkout@v4
-      -  name: Install dependencies
-         run: npm install
+      -  name: Install SF CLI
+         run: npm install sf
       -  name: Authenticate on DevHub
          run: sf org list
