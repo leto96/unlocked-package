@@ -6,9 +6,7 @@ jobs:
     name: Run Validation job
     runs-on: ubuntu-22.04
     steps:
-      -  name: List repo
-         run: ls -al
       -  name: Download files from repository
          uses: actions/checkout@v4
-      -  name: List repo with downloaded files
-         run: ls -al
+      -  name: Authenticate on DevHub
+         run: echo "sf org list"
