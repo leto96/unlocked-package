@@ -1,4 +1,4 @@
-name: Connect Org Workflow
+name: Connect Org Workflow 2
 run-name: Connect Org
 on: workflow_dispatch
 jobs:
