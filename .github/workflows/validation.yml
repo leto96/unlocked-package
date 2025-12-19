@@ -6,5 +6,9 @@ jobs:
     name: Run Validation job
     runs-on: ubuntu-22.04
     steps:
-      -  name: This is the first step
-         run: echo "Validating"
+      -  name: Download files from repository
+         uses: actions/checkout@v4
+      -  name: Install SF CLI
+         run: npm install --global @salesforce/cli@~2.112.0
+      -  name: Authenticate on DevHub
+         run: sf org list
