@@ -1,7 +1,6 @@
 name: Connect Org Workflow
 run-name: Connect Org
 on: workflow_dispatch
-env: IT
 jobs:
   show-secret:
     name: Show secret
