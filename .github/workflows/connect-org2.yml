@@ -10,4 +10,4 @@ jobs:
       -  name: print env secret
          env:
             TOKEN: ${{ secrets.TEST_SECRET }}
-         run: echo "token $TOKEN"
+         run: echo "token env $TOKEN"
