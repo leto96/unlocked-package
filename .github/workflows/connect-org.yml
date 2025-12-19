@@ -7,6 +7,4 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       -  name: print env secret
-         env:
-            SECRET_ENV: ${{ secrets.TEST_SECRET }}
          run: echo "$SECRET_ENV"
