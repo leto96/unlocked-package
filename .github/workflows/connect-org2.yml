@@ -1,7 +1,6 @@
 name: Connect Org 2 Workflow
 run-name: Connect Org
 on: workflow_dispatch
-environment: IT
 jobs:
   show-secret:
     name: Show secret
@@ -11,3 +10,8 @@ jobs:
          env:
             TOKEN: ${{ secrets.TEST_SECRET }}
          run: echo "token env $TOKEN"
+      -  shell: bash
+         env:
+            SUPER_SECRET: ${{ secrets.TEST_SECRET }}
+         run: |
+            echo "token 3 $SUPER_SECRET"
