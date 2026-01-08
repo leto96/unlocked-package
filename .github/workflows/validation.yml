@@ -1,23 +1,23 @@
 name: Run validation workflow
 run-name: Validate, test and deploy
 on: workflow_dispatch
-environment: IT
 jobs:
-  run-validation:
-    name: Run Validation job
-    runs-on: ubuntu-22.04
-    steps:
-      -  name: Download files from repository
-         uses: actions/checkout@v4
-      -  name: Install SF CLI
-         run: npm install --global @salesforce/cli@~2.112.0
-      -  name: Secrets
-         run: |
-            echo "DEV_HUB_JWT: $DEV_HUB_JWT"
-            echo "DEV_HUB_CLIENT_ID: $DEV_HUB_CLIENT_ID"
-            echo "DEV_HUB_INSTANCE_URL: $DEV_HUB_INSTANCE_URL"
-            echo "DEV_HUB_USERNAME: $DEV_HUB_USERNAME"
-      -  name: Authenticate on DevHub
-         run: |
-            echo "$DEV_HUB_JWT" > org.key
-            sf org login jwt -o $DEV_HUB_USERNAME -f org.key -i $DEV_HUB_CLIENT_ID -r $DEV_HUB_INSTANCE_URL -a devhub -s
+   environment: IT
+   run-validation:
+      name: Run Validation job
+      runs-on: ubuntu-22.04
+      steps:
+         -  name: Download files from repository
+            uses: actions/checkout@v4
+         -  name: Install SF CLI
+            run: npm install --global @salesforce/cli@~2.112.0
+         -  name: Secrets
+            run: |
+               echo "DEV_HUB_JWT: $DEV_HUB_JWT"
+               echo "DEV_HUB_CLIENT_ID: $DEV_HUB_CLIENT_ID"
+               echo "DEV_HUB_INSTANCE_URL: $DEV_HUB_INSTANCE_URL"
+               echo "DEV_HUB_USERNAME: $DEV_HUB_USERNAME"
+         -  name: Authenticate on DevHub
+            run: |
+               echo "$DEV_HUB_JWT" > org.key
+               sf org login jwt -o $DEV_HUB_USERNAME -f org.key -i $DEV_HUB_CLIENT_ID -r $DEV_HUB_INSTANCE_URL -a devhub -s
