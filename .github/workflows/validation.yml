@@ -20,4 +20,4 @@ jobs:
          -  name: Authenticate on DevHub
             run: |
                echo "${{ secrets.DEV_HUB_JWT }}" > org.key
-               sf org login jwt -o ${{ env.DEV_HUB_USERNAME -f org.key -i ${{ secrets.DEV_HUB_CLIENT_ID }} -r ${{ env.DEV_HUB_INSTANCE_URL }} -a devhub -s
+               sf org login jwt -o ${{ env.DEV_HUB_USERNAME }} -f org.key -i ${{ secrets.DEV_HUB_CLIENT_ID }} -r ${{ env.DEV_HUB_INSTANCE_URL }} -a devhub -s
