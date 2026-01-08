@@ -13,11 +13,11 @@ jobs:
             run: npm install --global @salesforce/cli@~2.112.0
          -  name: Secrets
             run: |
-               echo "DEV_HUB_JWT: $DEV_HUB_JWT"
-               echo "DEV_HUB_CLIENT_ID: $DEV_HUB_CLIENT_ID"
-               echo "DEV_HUB_INSTANCE_URL: $DEV_HUB_INSTANCE_URL"
-               echo "DEV_HUB_USERNAME: $DEV_HUB_USERNAME"
+               echo "DEV_HUB_JWT: ${{ secrets.DEV_HUB_JWT }}"
+               echo "DEV_HUB_CLIENT_ID: ${{ secrets.DEV_HUB_CLIENT_ID }}"
+               echo "DEV_HUB_INSTANCE_URL: ${{ env.DEV_HUB_INSTANCE_URL }}"
+               echo "DEV_HUB_USERNAME: ${{ env.DEV_HUB_USERNAME }}"
          -  name: Authenticate on DevHub
             run: |
-               echo "$DEV_HUB_JWT" > org.key
-               sf org login jwt -o $DEV_HUB_USERNAME -f org.key -i $DEV_HUB_CLIENT_ID -r $DEV_HUB_INSTANCE_URL -a devhub -s
+               echo "${{ secrets.DEV_HUB_JWT }}" > org.key
+               sf org login jwt -o ${{ env.DEV_HUB_USERNAME -f org.key -i ${{ secrets.DEV_HUB_CLIENT_ID }} -r ${{ env.DEV_HUB_INSTANCE_URL }} -a devhub -s
