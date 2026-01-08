@@ -2,8 +2,8 @@ name: Run validation workflow
 run-name: Validate, test and deploy
 on: workflow_dispatch
 jobs:
-   environment: IT
    run-validation:
+      environment: IT
       name: Run Validation job
       runs-on: ubuntu-22.04
       steps:
