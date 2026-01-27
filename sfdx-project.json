@@ -1,12 +1,12 @@
 {
   "packageDirectories": [
     {
-      "path": "force-app",
+      "path": "bundle1",
       "default": true
     }
   ],
   "name": "myPackage",
   "namespace": "",
-  "sfdcLoginUrl": "https://login.salesforce.com",
+  "sfdcLoginUrl": "https://letodev2-dev-ed.develop.my.salesforce.com",
   "sourceApiVersion": "64.0"
 }
