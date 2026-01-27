@@ -22,4 +22,4 @@ jobs:
                echo "${{ secrets.DEV_HUB_JWT }}" > org.key
                sf org login jwt -o ${{ vars.DEV_HUB_USERNAME }} -f org.key -i ${{ secrets.DEV_HUB_CLIENT_ID }} -r ${{ vars.DEV_HUB_INSTANCE_URL }} -a devhub -s
          -  name: Create Sratch Org
-            run: sf org scratch create --track-source false -y 1 -v devhub -w 10 -f config/project-scratch-def.json
+            run: sf org scratch create --no-track-source false -y 1 -v devhub -w 10 -f config/project-scratch-def.json -a validation_so
