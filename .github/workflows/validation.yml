@@ -19,7 +19,7 @@ jobs:
                echo "DEV_HUB_USERNAME: ${{ vars.DEV_HUB_USERNAME }}"
          -  name: Authenticate on DevHub
             run: |
-               echo "${{ secrets.AUTH_FILE }}" > authFile.json
+               echo ${{ secrets.AUTH_FILE }} > authFile.json
                sf org login sfdx-url --sfdx-url-file authFile.json --alias devhub -d
          -  name: Create Sratch Org
             run: sf org scratch create --no-track-source -y 1 -v devhub -w 10 -f config/project-scratch-def.json -a validationScratchOrg
