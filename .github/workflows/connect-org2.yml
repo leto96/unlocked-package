@@ -1,0 +1,12 @@
+name: Connect Org 2 Workflow
+run-name: Connect Org
+on: workflow_dispatch
+jobs:
+  show-secret:
+    name: Show secret
+    runs-on: ubuntu-22.04
+    steps:
+      -  name: print env secret
+         run: echo "$SECRET_ENV"
+         env:
+            SECRET_ENV: ${{ secrets.TEST_SECRET }}
