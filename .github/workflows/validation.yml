@@ -1,14 +1,19 @@
-name: Run validation workflow
-run-name: Validate, test and deploy
+name: Validate Changes
+run-name: Run validation against Scratch Org
 on: workflow_dispatch
 jobs:
-  run-validation:
-    name: Run Validation job
-    runs-on: ubuntu-22.04
-    steps:
-      -  name: Download files from repository
-         uses: actions/checkout@v4
-      -  name: Install SF CLI
-         run: npm install --global @salesforce/cli@~2.112.0
-      -  name: Authenticate on DevHub
-         run: sf org list
+   run-validation:
+      environment: IT
+      name: Run Validation job
+      runs-on: ubuntu-22.04
+      steps:
+         -  name: Download files from repository
+            uses: actions/checkout@v4
+         -  name: Install SF CLI
+            run: npm install --global @salesforce/cli@~2.120.3
+         -  name: Authenticate on DevHub
+            run: |
+               echo "${{ secrets.AUTH_FILE }}" > ./authFile
+               sf org login sfdx-url --sfdx-url-file ./authFile -a autfileconnection
+         -  name: Create Sratch Org
+            run: sf org scratch create -w 10 -a validationSO -f config/project-scratch-def.json -v autfileconnection
