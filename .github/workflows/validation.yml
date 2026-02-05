@@ -1,5 +1,5 @@
-name: Run validation workflow
-run-name: Validate, test and deploy
+name: Validate Changes
+run-name: Run validation against Scratch Org
 on: workflow_dispatch
 jobs:
    run-validation:
@@ -11,12 +11,6 @@ jobs:
             uses: actions/checkout@v4
          -  name: Install SF CLI
             run: npm install --global @salesforce/cli@~2.120.3
-         -  name: Secrets
-            run: |
-               echo "DEV_HUB_JWT: ${{ secrets.DEV_HUB_JWT }}"
-               echo "DEV_HUB_CLIENT_ID: ${{ secrets.DEV_HUB_CLIENT_ID }}"
-               echo "DEV_HUB_INSTANCE_URL: ${{ vars.DEV_HUB_INSTANCE_URL }}"
-               echo "DEV_HUB_USERNAME: ${{ vars.DEV_HUB_USERNAME }}"
          -  name: Authenticate on DevHub
             run: |
                echo "${{ secrets.AUTH_FILE }}" > ./authFile
