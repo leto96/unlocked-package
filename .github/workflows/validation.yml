@@ -15,5 +15,16 @@ jobs:
             run: |
                echo "${{ secrets.AUTH_FILE }}" > ./authFile
                sf org login sfdx-url --sfdx-url-file ./authFile -a autfileconnection
+         -  name: Create log connection file
+            run: |
+               sf org display --verbose > ./myConncetion.txt
+         -  name: Upload log connection file
+            uses: actions/upload-artifact@v6
+            with: 
+               name: orgDetails
+               path: ./myConncetion.txt
+         # to test without creation SO
          -  name: Create Sratch Org
-            run: sf org scratch create -w 10 -a validationSO -f config/project-scratch-def.json -v autfileconnection
+            ## Will simulate Scratch Org creation during development, so it doesn't consume the limits
+            ## run: sf org scratch create -w 10 -a validationSO -f config/project-scratch-def.json -v autfileconnection
+            run: echo "creating SO"
