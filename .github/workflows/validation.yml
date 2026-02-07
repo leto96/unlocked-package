@@ -17,7 +17,7 @@ jobs:
                sf org login sfdx-url --sfdx-url-file ./authFile -a autfileconnection
          -  name: Create log connection file
             run: |
-               sf org display --verbose > ./myConncetion.txt
+               sf org display --verbose -o autfileconnection > ./myConncetion.txt
          -  name: Upload log connection file
             uses: actions/upload-artifact@v6
             with: 
