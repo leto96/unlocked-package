@@ -2,7 +2,7 @@ name: Validate Changes
 run-name: Run validation against Scratch Org
 on: workflow_dispatch
 jobs:
-   installing_dependencies:
+   installing-dependencies:
       name: Installing dependencies
       runs-on: ubuntu-22.04
       steps:
@@ -22,7 +22,7 @@ jobs:
             run: |
                echo "authfile=${{ secrets.AUTH_FILE }}" >> $GITHUB_OUTPUT
    connect-org:
-      needs: [installing_dependencies get_connection_details]
+      needs: [installing-dependencies, get-connection-details]
       name: Connect to DevHub
       runs-on: ubuntu-22.04
       env:
