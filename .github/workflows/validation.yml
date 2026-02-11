@@ -2,18 +2,38 @@ name: Validate Changes
 run-name: Run validation against Scratch Org
 on: workflow_dispatch
 jobs:
-   run-validation:
-      environment: IT
-      name: Run Validation job
+   installing-dependencies:
+      name: Installing dependencies
       runs-on: ubuntu-22.04
       steps:
-         -  name: Download files from repository
-            uses: actions/checkout@v4
-         -  name: Install SF CLI
-            run: npm install --global @salesforce/cli@~2.120.3
-         -  name: Authenticate on DevHub
+         - name: Download files from repository
+           uses: actions/checkout@v4
+         - name: Install CLI
+           run: npm install --global @salesforce/cli@~2.120.3
+   get-connection-details:
+      environment: IT
+      runs-on: ubuntu-22.04
+      needs: installing-dependencies
+      outputs:
+         auth_url: ${{ steps.authurlcreationstep.outputs.authfile }}
+      steps:
+         -  name: Preparing auth url for login
+            id: authurlcreationstep
             run: |
-               echo "${{ secrets.AUTH_FILE }}" > ./authFile
+               echo "authfile=${{ secrets.AUTH_FILE }}" >> $GITHUB_OUTPUT
+   connect-org:
+      needs: [installing-dependencies get-connection-details]
+      name: Connect to DevHub
+      runs-on: ubuntu-22.04
+      env:
+         to-auth-file: ${{ needs.get-connection-details.outputs.auth_url }}
+      steps:
+         -  name: Log file
+            run: |
+               echo "$to-auth-file"
+               echo "$to-auth-file" > ./authFile
+         -  name: CLI command to login
+            run: |
                sf org login sfdx-url --sfdx-url-file ./authFile -a autfileconnection
          -  name: Create log connection file
             run: |
