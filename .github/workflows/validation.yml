@@ -38,8 +38,10 @@ jobs:
       env:
          to-auth-file: ${{ needs.get-connection-details.outputs.auth_url }}
       steps:
+         - name: Download files from repository
+           uses: actions/checkout@v4
          - name: Cache dependencies
-           id: step_cache
+           id: step_cache2
            uses: actions/cache@v5
            with:
                path: ./node_modules
