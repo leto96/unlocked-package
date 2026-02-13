@@ -8,9 +8,19 @@ jobs:
       steps:
          - name: Download files from repository
            uses: actions/checkout@v4
-         - name: Install CLI
-           run: npm install --global @salesforce/cli@~2.120.3
+         - name: Cache dependencies
+           id: step_cache
+           uses: actions/cache@v5
+           with:
+               path: ./node_modules
+               key: ${{ hashFiles('./package-lock.json') }}
+         - name: dependencies installation
+           if: ${{ steps.cache.outputs.cache-hit != 'true' }}
+           run: |
+               echo "Installing" 
+               npm install
    get-connection-details:
+      name: Get Connection details from file
       environment: IT
       runs-on: ubuntu-22.04
       needs: installing-dependencies
@@ -28,6 +38,12 @@ jobs:
       env:
          to-auth-file: ${{ needs.get-connection-details.outputs.auth_url }}
       steps:
+         - name: Cache dependencies
+           id: step_cache
+           uses: actions/cache@v5
+           with:
+               path: ./node_modules
+               key: ${{ hashFiles('./package-lock.json') }}
          -  name: Log file
             run: |
                echo "$to-auth-file"
